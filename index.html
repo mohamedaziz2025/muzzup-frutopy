@@ -1,0 +1,992 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Muzzup — Fidélité IA pour boucheries</title>
+  <meta name="description" content="Muzzup by Frutopy : la plateforme de fidélisation et d'intelligence client conçue exclusivement pour les boucheries. Présentation et démo interactive.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23FF6A3D'/%3E%3Cstop offset='1' stop-color='%23A10F2B'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='9' fill='url(%23g)'/%3E%3Cpath d='M8 23V11l6 7 7-9M17 9h4v4M21 16v7' fill='none' stroke='%23fff' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round' transform='translate(-1 0)'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<canvas id="confetti"></canvas>
+<div class="toasts" id="toasts"></div>
+
+<!-- ================= NAV ================= -->
+<nav class="nav" id="nav">
+  <a href="#hero" class="brand"><span class="logo-tile"><i data-i="logo"></i></span>muzzup<small>by Frutopy</small></a>
+  <div class="nav-links" id="navLinks">
+    <a href="#probleme">Concept</a>
+    <a href="#parcours">Parcours</a>
+    <a href="#app">App client</a>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#ia">Muzzup AI</a>
+    <a href="#admin">Console</a>
+    <a href="#modele">Modèle</a>
+    <a href="#tech">Tech</a>
+  </div>
+  <div class="nav-cta">
+    <button class="btn-ghost sm" id="presBtn"><i data-i="play"></i> Présenter</button>
+    <a href="#app" class="btn sm">Démo live <i data-i="arrow"></i></a>
+    <button class="burger" id="burger" aria-label="Menu"><i data-i="menu"></i></button>
+  </div>
+</nav>
+
+<nav class="dots-nav" id="dotsNav"></nav>
+<div class="pres-hud">
+  <button id="pPrev" aria-label="Section précédente"><i data-i="chevU"></i></button>
+  <span id="pCount">1 / 14</span>
+  <button id="pNext" aria-label="Section suivante"><i data-i="chevD"></i></button>
+  <button id="pExit" aria-label="Quitter"><i data-i="x"></i></button>
+</div>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="hero" data-title="Accueil">
+  <div class="hero-bg"><div class="mesh"></div><div class="grid"></div></div>
+  <div class="wrap">
+    <div class="hero-in">
+      <div>
+        <div class="hero-badge rv"><b>NOUVEAU</b> La fidélisation IA 100 % dédiée aux boucheries</div>
+        <h1 class="rv d1">La fidélité<br>qui a du <span class="serif grad-text">goût.</span></h1>
+        <p class="lead rv d2">Muzzup transforme chaque passage au comptoir en client fidèle : carte Wallet en 5 secondes, points au dinar, précommandes de l'Aïd et une IA qui relance vos clients avant qu'ils ne partent chez la concurrence.</p>
+        <div class="hero-ctas rv d3">
+          <a href="#app" class="btn"><i data-i="smartphone"></i> Lancer la démo interactive</a>
+          <a href="#probleme" class="btn-ghost">Découvrir le concept <i data-i="arrowD"></i></a>
+        </div>
+        <div class="hero-trust rv d4">
+          <span class="chip"><i data-i="wallet"></i> Apple &amp; Google Wallet</span>
+          <span class="chip"><i data-i="shield"></i> Traçabilité halal</span>
+          <span class="chip"><i data-i="sparkles"></i> IA prédictive</span>
+        </div>
+      </div>
+
+      <div class="stage rv d2" id="stage">
+        <div class="fchip c1"><span class="fi" style="background:rgba(243,196,122,.16)">🐑</span><div><b>Arrivage agneau frais</b><small>Push envoyé à 214 clients</small></div></div>
+        <div class="fchip c2"><span class="fi" style="background:rgba(94,211,181,.15);color:var(--mint)"><i data-i="check"></i></span><div><b>Karim est revenu</b><small>Relance IA · +86 DT</small></div></div>
+        <div class="mcard-wrap">
+          <div class="mcard" id="heroCard">
+            <svg class="pattern" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20V7l6.5 7.5L17 5"/><path d="M12.5 5H17v4.5"/><path d="M17 12v8"/></svg>
+            <div class="mc-top">
+              <span class="mc-brand"><span class="logo-tile"><i data-i="logo"></i></span>muzzup</span>
+              <span class="mc-tier">★ MEMBRE OR</span>
+            </div>
+            <div>
+              <div class="mc-shop">DAR EL LHAM · BOUCHERIE · LA MARSA</div>
+              <div class="mc-pts"><span data-count="486">486</span><span class="u">points</span></div>
+              <div class="mc-stamps"><i class="f">✓</i><i class="f">✓</i><i class="f">✓</i><i class="f">✓</i><i class="f">✓</i><i class="f">✓</i><i class="f">✓</i><i></i><i></i><i>🎁</i></div>
+            </div>
+            <div class="mc-bot"><span>SARRA BEN ALI</span><span>N° 4821 0448</span></div>
+          </div>
+        </div>
+        <div class="coin"><span>+52<small>pts</small></span></div>
+        <div class="fchip c3"><span class="fi" style="background:rgba(156,140,255,.16)">🌙</span><div><b>Précommande Aïd</b><small>Mouton entier réservé · acompte reçu</small></div></div>
+        <div class="fchip c4"><span class="fi" style="background:rgba(227,38,63,.16);color:#FF8597"><i data-i="trend"></i></span><div><b>Taux de retour 38 %</b><small>30 derniers jours</small></div></div>
+      </div>
+    </div>
+
+    <div class="stats-band rv">
+      <div class="stat"><div class="v">+<span data-count="30">0</span> %</div><div class="l">de clients qui reviennent (objectif)</div></div>
+      <div class="stat"><div class="v"><span data-count="5">0</span> s</div><div class="l">pour créer sa carte au comptoir</div></div>
+      <div class="stat"><div class="v"><span data-count="0">0</span> DT</div><div class="l">d'abonnement, aucun matériel</div></div>
+      <div class="stat"><div class="v grad-text">5–10 %</div><div class="l">du CA additionnel, uniquement s'il existe</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Carte Wallet</span><span>Points au dinar</span><span>Précommande Aïd</span><span>Traçabilité halal</span><span>Heures creuses</span><span>Churn IA</span><span>Cross-sell</span><span>Parrainage</span><span>Avis Google</span><span>Chatbot SAV</span><span>Anti-fraude</span><span>Restaurateurs B2B</span>
+    <span>Carte Wallet</span><span>Points au dinar</span><span>Précommande Aïd</span><span>Traçabilité halal</span><span>Heures creuses</span><span>Churn IA</span><span>Cross-sell</span><span>Parrainage</span><span>Avis Google</span><span>Chatbot SAV</span><span>Anti-fraude</span><span>Restaurateurs B2B</span>
+  </div>
+</div>
+
+<!-- ================= PROBLEME ================= -->
+<section class="sec" id="probleme" data-title="Le constat">
+  <div class="wrap">
+    <div class="sec-head split">
+      <div>
+        <span class="eyebrow rv">01 — Le constat</span>
+        <h2 class="h2 rv d1">Le boucher de quartier<br>mérite <span class="serif grad-text">mieux</span> qu'une carte papier.</h2>
+      </div>
+      <p class="lead rv d2">Retenza a prouvé le concept de la fidélisation automatisée pour le commerce local. Muzzup le spécialise pour un métier unique, avec ses rythmes, ses produits et ses grandes fêtes.</p>
+    </div>
+    <div class="bento">
+      <div class="card pcard b-4 rv"><span class="pi">🧾</span><h3>La carte papier se perd</h3><p>Tampons oubliés, cartes égarées : aucune trace du client, aucune relance possible.</p></div>
+      <div class="card pcard b-4 rv d1"><span class="pi">🛒</span><h3>La grande surface attire</h3><p>Promotions agressives et programmes nationaux captent les familles le week-end.</p></div>
+      <div class="card pcard b-4 rv d2"><span class="pi">📉</span><h3>Des après-midis creux</h3><p>Le rush du samedi matin, puis des heures vides que personne n'exploite.</p></div>
+      <div class="card pcard b-5 rv"><span class="pi">🌙</span><h3>Des pics non anticipés</h3><p>Aïd, Ramadan, mariages : réservations au carnet, acomptes perdus, files d'attente interminables.</p></div>
+      <div class="card quote-card b-7 rv d1">
+        <blockquote>« Le boucher connaît ses clients par leur prénom. Muzzup lui donne la <span class="serif">mémoire</span>, l'IA et les outils d'un grand distributeur. »</blockquote>
+        <cite>— La vision Muzzup · by Frutopy</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PARCOURS ================= -->
+<section class="sec" id="parcours" data-title="Le parcours">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow rv">02 — Comment ça marche</span>
+      <h2 class="h2 rv d1">Du comptoir au retour client,<br><span class="serif grad-text">sans effort</span> pour le boucher.</h2>
+      <p class="lead rv d2">Un parcours continu : QR en vitrine → carte en 5 s → points à chaque achat → relance automatique. Le boucher ne touche qu'à son dashboard.</p>
+    </div>
+    <div class="steps rv" id="steps">
+      <div class="steps-line"><i id="stepsLine"></i></div>
+      <div class="step on" data-step="0"><div class="sn">📲</div><div class="k">ÉTAPE 01</div><h3>Scan au comptoir</h3><p>Un QR code sur la vitrine et la balance. Le client scanne avec son appareil photo.</p></div>
+      <div class="step" data-step="1"><div class="sn">⚡</div><div class="k">ÉTAPE 02</div><h3>Carte en 5 secondes</h3><p>Prénom, téléphone, code SMS. La carte rejoint Apple ou Google Wallet.</p></div>
+      <div class="step" data-step="2"><div class="sn">🥩</div><div class="k">ÉTAPE 03</div><h3>Points à chaque achat</h3><p>Points au dinar, tampons au passage, cashback : tout est crédité automatiquement.</p></div>
+      <div class="step" data-step="3"><div class="sn">🤖</div><div class="k">ÉTAPE 04</div><h3>L'IA relance</h3><p>Absent depuis 14 jours ? Arrivage d'agneau ? Muzzup envoie la bonne offre au bon moment.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ECOSYSTEME ================= -->
+<section class="sec tight" id="ecosysteme" data-title="L'écosystème">
+  <div class="wrap">
+    <div class="sec-head split">
+      <div>
+        <span class="eyebrow rv">03 — L'écosystème</span>
+        <h2 class="h2 rv d1">Quatre interfaces,<br>une seule <span class="serif grad-text">plateforme</span>.</h2>
+      </div>
+      <p class="lead rv d2">Héritées de Retenza Connect (fidélité) et Retenza AI (intelligence), réunies et repensées pour la boucherie.</p>
+    </div>
+    <div class="eco">
+      <div class="card rv">
+        <span class="ei" style="background:linear-gradient(135deg,#FF6A3D,#C8102E)"><i data-i="smartphone"></i></span>
+        <span class="tag">Flutter · iOS &amp; Android</span>
+        <h3>App client</h3>
+        <p>La carte de fidélité dans la poche du client, et bien plus.</p>
+        <ul><li><i data-i="check"></i>Carte Apple &amp; Google Wallet</li><li><i data-i="check"></i>Précommande Aïd &amp; Ramadan</li><li><i data-i="check"></i>Fiche traçabilité halal</li><li><i data-i="check"></i>Parrainage entre voisins</li></ul>
+        <a href="#app" class="go">Voir la démo <i data-i="arrow"></i></a>
+      </div>
+      <div class="card rv d1">
+        <span class="ei" style="background:linear-gradient(135deg,#F3C47A,#B87A1E)"><i data-i="monitor"></i></span>
+        <span class="tag">Next.js · Web</span>
+        <h3>Dashboard boucher</h3>
+        <p>Le cockpit de la boucherie : clients, caisse, campagnes.</p>
+        <ul><li><i data-i="check"></i>CRM &amp; scoring clients</li><li><i data-i="check"></i>Caisse &amp; attribution des points</li><li><i data-i="check"></i>Campagnes automatiques</li><li><i data-i="check"></i>QR vitrine &amp; programme</li></ul>
+        <a href="#dashboard" class="go">Voir la démo <i data-i="arrow"></i></a>
+      </div>
+      <div class="card rv d2">
+        <span class="ei" style="background:linear-gradient(135deg,#9C8CFF,#5B4BDB)"><i data-i="sparkles"></i></span>
+        <span class="tag">Python · ML · LLM</span>
+        <h3>Muzzup AI</h3>
+        <p>Le cerveau qui comprend et anticipe le comportement client.</p>
+        <ul><li><i data-i="check"></i>Segmentation RFM + GMM</li><li><i data-i="check"></i>Prédiction de churn XGBoost</li><li><i data-i="check"></i>Heures creuses &amp; offres flash</li><li><i data-i="check"></i>Chatbot SAV multilingue</li></ul>
+        <a href="#ia" class="go">Voir les modules <i data-i="arrow"></i></a>
+      </div>
+      <div class="card rv d3">
+        <span class="ei" style="background:linear-gradient(135deg,#5ED3B5,#1F7D6C)"><i data-i="shield"></i></span>
+        <span class="tag">Super admin · Frutopy</span>
+        <h3>Console plateforme</h3>
+        <p>La supervision du réseau de boucheries partenaires.</p>
+        <ul><li><i data-i="check"></i>Gestion des boucheries</li><li><i data-i="check"></i>Support &amp; incidents</li><li><i data-i="check"></i>Santé système &amp; jobs IA</li><li><i data-i="check"></i>Audit &amp; anti-fraude</li></ul>
+        <a href="#admin" class="go">Voir la console <i data-i="arrow"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= APP CLIENT DEMO ================= -->
+<section class="sec" id="app" data-title="App client">
+  <div class="glow" style="width:600px;height:600px;background:#9E0E24;left:30%;top:20%;opacity:.35"></div>
+  <div class="wrap">
+    <div class="sec-head split">
+      <div>
+        <span class="eyebrow rv">04 — Démo · App client</span>
+        <h2 class="h2 rv d1">Touchez, scannez,<br><span class="serif grad-text">échangez.</span></h2>
+      </div>
+      <p class="lead rv d2">Le téléphone ci-dessous est entièrement interactif : inscription, scan d'un ticket, échange de points, réservation du mouton de l'Aïd… Choisissez un écran ou laissez-vous guider.</p>
+    </div>
+
+    <div class="demo-grid">
+      <div class="demo-list rv" id="phoneList"></div>
+
+      <div class="demo-stage rv d1">
+        <div class="phone-fit" id="phoneFit"><div class="phone">
+          <div class="phone-screen app-ui" id="phone">
+            <div class="island"></div>
+            <div class="sbar" id="sbar"><span>9:41</span><span class="r"><i data-i="signal"></i> 5G <i data-i="battery"></i></span></div>
+            <div class="ptoast" id="ptoast"><span class="e" id="ptoastE">🎉</span><span id="ptoastTx"></span></div>
+
+            <!-- 1 · Bienvenue -->
+            <section class="scr dark full on" data-s="welcome">
+              <div class="welcome">
+                <div class="hero-art">
+                  <div class="ring"></div><div class="ring r2"></div>
+                  <div class="big-logo"><i data-i="logo"></i></div>
+                  <div class="orb" style="top:34px;left:26px">🥩</div>
+                  <div class="orb" style="top:52px;right:22px;animation-delay:-2s">🎁</div>
+                  <div class="orb" style="bottom:42px;left:40px;animation-delay:-3s">🐑</div>
+                  <div class="orb" style="bottom:22px;right:48px;animation-delay:-1s">⭐</div>
+                </div>
+                <h4>Votre boucher<br>vous <span class="serif grad-text">récompense.</span></h4>
+                <p>Des points à chaque passage, votre mouton de l'Aïd réservé en 2 minutes et l'origine de chaque viande.</p>
+                <div class="dots"><i class="on"></i><i></i><i></i></div>
+                <button class="p-btn" data-go="signup">Activer ma carte <i data-i="arrow"></i></button>
+                <button class="link-light" data-go="home">J'ai déjà un compte</button>
+              </div>
+            </section>
+
+            <!-- 2 · Inscription -->
+            <section class="scr full" data-s="signup">
+              <button class="back" data-go="welcome" aria-label="Retour"><i data-i="chevL"></i></button>
+              <div class="shopbadge"><span>🥩</span> Dar El Lham · La Marsa</div>
+              <h4 class="dsp scr-title">Bienvenue chez<br>Dar El Lham</h4>
+              <p class="scr-sub">Une seule fois — vos points sont à vous pour toujours.</p>
+              <label class="p-field"><span>Prénom</span><input id="suName" value="Sarra" autocomplete="off"></label>
+              <label class="p-field"><span>Téléphone</span><input value="+216 22 ·· ·· 48" autocomplete="off"></label>
+              <label class="p-field"><span>Anniversaire (optionnel)</span><input value="12 avril" autocomplete="off"></label>
+              <label class="consent"><input type="checkbox" checked> J'accepte de recevoir les offres de ma boucherie. Données protégées (RGPD).</label>
+              <button class="p-btn" data-go="otp">Recevoir le code SMS</button>
+              <div class="wallets"><span><i data-i="wallet"></i> Apple Wallet</span><span><i data-i="wallet"></i> Google Wallet</span></div>
+            </section>
+
+            <!-- 3 · OTP -->
+            <section class="scr full" data-s="otp">
+              <button class="back" data-go="signup" aria-label="Retour"><i data-i="chevL"></i></button>
+              <div class="otp-ic">💬</div>
+              <h4 class="dsp scr-title">Code envoyé</h4>
+              <p class="scr-sub">Saisissez le code reçu par SMS au +216 22 ·· ·· 48</p>
+              <div class="p-otp" id="otp"><input maxlength="1" inputmode="numeric"><input maxlength="1" inputmode="numeric"><input maxlength="1" inputmode="numeric"><input maxlength="1" inputmode="numeric"></div>
+              <button class="p-btn" id="otpBtn">Vérifier &amp; créer ma carte</button>
+              <p class="scr-sub center" style="margin-top:12px">Renvoyer le code dans <b class="mono">0:24</b></p>
+              <div class="pass-anim" id="passAnim">
+                <div class="pass"><span>🥩 Dar El Lham</span><b>0 pts</b><small>Membre Bronze</small></div>
+                <div class="pocket"><i data-i="wallet"></i> Ajout au Wallet…</div>
+              </div>
+            </section>
+
+            <!-- 4 · Carte -->
+            <section class="scr" data-s="home">
+              <div class="p-head">
+                <div><small>Bonjour 👋</small><h4 id="helloName">Sarra</h4></div>
+                <button class="p-av" data-go="notifs" aria-label="Notifications">SB<span class="dot"></span></button>
+              </div>
+              <div class="p-card" id="pcard">
+                <div class="pc-front">
+                  <div class="row"><span class="sh"><span>🥩</span> Dar El Lham</span><span class="tier">★ OR</span></div>
+                  <div class="pts"><span class="ptsSync">486</span> <small>points</small></div>
+                  <div class="prog"><i id="ptsProg"></i></div>
+                  <div class="meta" id="ptsMeta"></div>
+                  <div class="p-stamps" id="stamps"></div>
+                  <div class="meta" id="stampMeta"></div>
+                </div>
+                <div class="pc-back">
+                  <canvas id="memberQR" width="150" height="150"></canvas>
+                  <b>Présentez ce code au comptoir</b>
+                  <small class="mono">N° 4821 0448</small>
+                </div>
+                <span class="flip-hint"><i data-i="refresh"></i> Toucher pour le QR</span>
+              </div>
+              <div class="p-banner"><span class="e">🐑</span><div><b>Arrivage agneau frais ce matin</b><small>Épaule &amp; gigot — réservez avant 12h</small></div></div>
+              <div class="quick">
+                <button data-go="order"><span>🌙</span>Aïd</button>
+                <button data-go="explore"><span>📍</span>Boucheries</button>
+                <button data-go="trace"><span>🔎</span>Traçabilité</button>
+                <button data-go="rewards"><span>🎁</span>Cadeaux</button>
+              </div>
+              <div class="p-sec"><b>Activité récente</b><span>Tout voir</span></div>
+              <div class="p-list" id="activity"></div>
+            </section>
+
+            <!-- 5 · Scan -->
+            <section class="scr" data-s="scan">
+              <div class="p-head"><div><small>Au comptoir</small><h4>Scanner</h4></div></div>
+              <p class="scr-sub">Scannez le QR imprimé sur votre ticket : vos points sont crédités instantanément.</p>
+              <div class="scanner" id="scanner">
+                <div class="vf"><i></i><i></i><i></i><i></i><canvas class="fakeqr" id="scanQR" width="130" height="130"></canvas><div class="laser"></div></div>
+                <div class="ok"><div><div class="big">+52</div><div>points crédités</div><small class="mono">Ticket #A-2291 · 52,400 DT</small></div></div>
+              </div>
+              <button class="p-btn" id="scanBtn" style="margin-top:14px"><i data-i="scan"></i> Simuler le scan</button>
+              <div class="p-sec"><b>Détail du ticket</b><span>15 oct. · 10:24</span></div>
+              <div class="p-list">
+                <div class="p-row"><span class="e">🍖</span><div class="t"><b>Gigot d'agneau</b><small>1,2 kg × 28,000 DT</small></div><span class="amt">33,600</span></div>
+                <div class="p-row"><span class="e">🌭</span><div class="t"><b>Merguez maison</b><small>0,5 kg × 30,000 DT</small></div><span class="amt">15,000</span></div>
+                <div class="p-row"><span class="e">🌶️</span><div class="t"><b>Harissa artisanale</b><small>1 pot · suggestion IA</small></div><span class="amt">3,800</span></div>
+              </div>
+            </section>
+
+            <!-- 6 · Récompenses -->
+            <section class="scr" data-s="rewards">
+              <div class="p-head"><div><small>Catalogue</small><h4>Récompenses</h4></div></div>
+              <div class="rw-bal"><span class="e">🎁</span><div><b><span class="ptsSync">486</span> pts</b><small>à dépenser chez Dar El Lham</small></div></div>
+              <div class="p-seg" id="rwSeg"><button class="on" data-cat="all">Tout</button><button data-cat="viande">Viandes</button><button data-cat="service">Services</button><button data-cat="bbq">BBQ</button></div>
+              <div class="p-list" id="rewardList"></div>
+            </section>
+
+            <!-- 7 · Précommande Aïd -->
+            <section class="scr" data-s="order">
+              <div class="p-head"><div><small>Précommande</small><h4>Aïd el-Kebir</h4></div></div>
+              <div class="po-hero">
+                <span class="moon">🌙</span>
+                <b>Réservez votre mouton</b>
+                <small>Retrait la veille de l'Aïd · découpe offerte aux membres Or</small>
+                <div class="po-count"><div><b id="cdD">23</b><small>jours</small></div><div><b id="cdH">14</b><small>heures</small></div><div><b id="cdM">36</b><small>min</small></div><div><b id="cdS">00</b><small>sec</small></div></div>
+              </div>
+              <div class="p-sec"><b>1. Votre choix</b><span>Prix au poids</span></div>
+              <div class="opt" id="poOpts">
+                <button class="on" data-price="1250" data-name="Mouton entier"><span class="e">🐑</span><b>Entier</b><small>≈ 1 250 DT</small></button>
+                <button data-price="640" data-name="Demi-mouton"><span class="e">🍖</span><b>Demi</b><small>≈ 640 DT</small></button>
+                <button data-price="320" data-name="Colis découpe 8 kg"><span class="e">📦</span><b>Colis 8 kg</b><small>≈ 320 DT</small></button>
+              </div>
+              <div class="p-sec"><b>2. Découpe</b><span>Offerte</span></div>
+              <div class="cuts" id="poCuts">
+                <button class="on">Gigots entiers</button><button class="on">Épaule en morceaux</button><button>Côtelettes</button><button>Osbane préparé</button><button>Merguez maison</button><button>Abats nettoyés</button>
+              </div>
+              <div class="p-sec"><b>3. Créneau de retrait</b></div>
+              <div class="p-seg" id="poSlots"><button class="on">Veille · 08h</button><button>Veille · 14h</button><button>Jour J · 06h</button></div>
+              <div class="po-sum" id="poSum"></div>
+              <button class="p-btn" id="poBtn" style="margin-top:12px"><i data-i="lock"></i> Réserver avec acompte</button>
+            </section>
+
+            <!-- 8 · Explorer -->
+            <section class="scr" data-s="explore">
+              <div class="p-head"><div><small>Réseau Muzzup</small><h4>Boucheries</h4></div><span class="p-av">📍</span></div>
+              <div class="map">
+                <div class="sea"></div>
+                <div class="road" style="left:-10px;right:60px;top:70px;height:9px;transform:rotate(-8deg)"></div>
+                <div class="road" style="left:90px;top:-10px;bottom:-10px;width:8px;transform:rotate(14deg)"></div>
+                <div class="road" style="left:20px;right:120px;top:120px;height:6px"></div>
+                <div class="pin me" style="left:120px;top:84px"></div>
+                <div class="pin" style="left:150px;top:40px"><span>🥩</span></div>
+                <div class="pin" style="left:46px;top:96px"><span>🥩</span></div>
+                <div class="pin" style="left:200px;top:108px;background:#2B8C7E"><span>🥩</span></div>
+              </div>
+              <div class="p-seg" id="exSeg"><button class="on" data-f="all">Toutes</button><button data-f="halal">Halal certifié</button><button data-f="open">Ouvert</button><button data-f="delivery">Livraison</button></div>
+              <div class="p-list" id="shopList"></div>
+            </section>
+
+            <!-- 9 · Traçabilité -->
+            <section class="scr" data-s="trace">
+              <div class="p-head"><div><small>Scan de l'étiquette</small><h4>Traçabilité</h4></div></div>
+              <div class="trace-hero">🐑<span class="badge"><i data-i="shield"></i> Halal certifié · contrôlé</span></div>
+              <div class="p-sec"><b>Gigot d'agneau</b><span class="mono">Lot #AG-0917</span></div>
+              <div class="facts">
+                <div><small>Race</small><b>Barbarine</b></div>
+                <div><small>Origine</small><b>Sidi Bouzid</b></div>
+                <div><small>Âge</small><b>7 mois</b></div>
+                <div><small>Alimentation</small><b>Pâturage</b></div>
+              </div>
+              <div class="tl">
+                <div><b>Élevage</b><small>Ferme Ouled Ali · éleveur partenaire</small></div>
+                <div><b>Abattage</b><small>Abattoir agréé · 12 oct. · contrôle vétérinaire ✓</small></div>
+                <div><b>Chaîne du froid</b><small>Transport réfrigéré · 2 °C ✓</small></div>
+                <div><b>Découpe &amp; vente</b><small>Dar El Lham · 15 oct. · 10:24</small></div>
+              </div>
+            </section>
+
+            <!-- 10 · Notifications -->
+            <section class="scr lock full" data-s="notifs">
+              <div class="time">9:41</div>
+              <div class="date" id="lockDate">jeudi 15 octobre</div>
+              <div id="notifList" style="margin-top:36px"></div>
+              <button class="link-light" data-go="home" style="margin-top:18px">Ouvrir Muzzup</button>
+            </section>
+
+            <!-- 11 · Profil -->
+            <section class="scr" data-s="profile">
+              <div class="prof"><div class="av">SB</div><h5>Sarra Ben Ali</h5><small>Membre Or · depuis mars 2025</small></div>
+              <div class="p-kpis"><div><b>38</b><small>passages</small></div><div><b>1 284</b><small>DT dépensés</small></div><div><b>3</b><small>cadeaux</small></div></div>
+              <div class="ref"><span style="font-size:26px">🤝</span><div style="flex:1"><small>Parrainez un voisin : 500 g de haché offerts à chacun</small><div class="code">REF-SARRA-0448</div></div><button class="p-btn sm" id="refBtn">Partager</button></div>
+              <div class="p-list" style="margin-top:12px">
+                <button class="menu-row" data-go="explore"><i data-i="store"></i>Mes boucheries (2)<i data-i="chevR"></i></button>
+                <button class="menu-row" data-go="notifs"><i data-i="bell"></i>Notifications<i data-i="chevR"></i></button>
+                <button class="menu-row" id="langBtn"><i data-i="globe"></i><span id="langTx">Langue · Français</span><i data-i="chevR"></i></button>
+                <button class="menu-row"><i data-i="lock"></i>Confidentialité &amp; RGPD<i data-i="chevR"></i></button>
+                <a class="menu-row" href="#ia-chat"><i data-i="bot"></i>Aide &amp; assistant<i data-i="chevR"></i></a>
+              </div>
+            </section>
+
+            <nav class="tabbar hide" id="tabbar">
+              <button class="tab" data-go="home"><i data-i="card"></i>Carte</button>
+              <button class="tab" data-go="rewards"><i data-i="gift"></i>Cadeaux</button>
+              <button class="tab scan" data-go="scan"><span class="b"><i data-i="scan"></i></span></button>
+              <button class="tab" data-go="order"><i data-i="moon"></i>Aïd</button>
+              <button class="tab" data-go="profile"><i data-i="user"></i>Profil</button>
+            </nav>
+          </div>
+        </div></div>
+
+        <div class="demo-note" id="phoneNote"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DASHBOARD DEMO ================= -->
+<section class="sec" id="dashboard" data-title="Dashboard boucher">
+  <div class="wrap">
+    <div class="sec-head split">
+      <div>
+        <span class="eyebrow rv">05 — Démo · Dashboard boucher</span>
+        <h2 class="h2 rv d1">Le cockpit de<br>la <span class="serif grad-text">boucherie.</span></h2>
+      </div>
+      <p class="lead rv d2">Chaque chiffre est traçable. Naviguez dans le menu : filtrez vos clients, encaissez une vente, créez une campagne, gérez les précommandes de l'Aïd.</p>
+    </div>
+
+    <div class="browser rv">
+      <div class="bbar"><i class="d"></i><i class="d"></i><i class="d"></i><span class="url"><i data-i="lock"></i><span>app.muzzup.io/<span id="dashUrl">tableau-de-bord</span></span></span></div>
+      <div class="dash app-ui">
+        <aside class="dside" id="dside">
+          <div class="brand"><span class="logo-tile"><i data-i="logo"></i></span>muzzup</div>
+          <div class="grp">Pilotage</div>
+          <button class="dnav on" data-v="dash" data-u="tableau-de-bord"><i data-i="layout"></i>Tableau de bord</button>
+          <button class="dnav" data-v="clients" data-u="clients"><i data-i="users"></i>Clients</button>
+          <button class="dnav" data-v="pos" data-u="caisse"><i data-i="receipt"></i>Caisse &amp; points</button>
+          <div class="grp">Croissance</div>
+          <button class="dnav" data-v="camp" data-u="campagnes/nouvelle"><i data-i="send"></i>Campagnes</button>
+          <button class="dnav" data-v="prog" data-u="programme"><i data-i="gift"></i>Programme fidélité</button>
+          <button class="dnav" data-v="pre" data-u="precommandes"><i data-i="moon"></i>Précommandes<span class="bdg" id="preBadge">12</span></button>
+          <button class="dnav" data-v="rev" data-u="avis"><i data-i="star"></i>Avis clients<span class="bdg">3</span></button>
+          <div class="grp">Intelligence</div>
+          <a class="dnav" href="#ia"><i data-i="sparkles"></i>Muzzup AI<span class="bdg ai">IA</span></a>
+          <div class="grow"></div>
+          <div class="me"><span class="av">DL</span><div><b>Dar El Lham</b>Boucherie · La Marsa</div></div>
+        </aside>
+
+        <div class="dmain" id="dmain">
+          <div class="dtop">
+            <label class="dsearch"><i data-i="search"></i><input placeholder="Rechercher un client, un produit…" id="globalSearch"></label>
+            <span class="live"><i></i>Caisse synchronisée</span>
+            <button class="ib" aria-label="Notifications"><i data-i="bell"></i><span class="b">4</span></button>
+            <span class="ib" style="background:var(--a-soft);color:var(--a-red);font-weight:700;font-size:12px">DL</span>
+          </div>
+
+          <div class="dbody">
+            <!-- VIEW: dashboard -->
+            <div class="view on" data-view="dash">
+              <div class="vh">
+                <div><h3>Bonjour, Dar El Lham 👋</h3><p>Vos résultats Muzzup sur la période sélectionnée.</p></div>
+                <div class="seg" id="periodSeg"><button data-p="7">7 j</button><button class="on" data-p="30">30 j</button><button data-p="365">12 m</button></div>
+              </div>
+              <div class="kpis" id="kpis"></div>
+              <div class="dgrid g-21">
+                <div class="dcard">
+                  <h5>CA additionnel généré par Muzzup <span class="legend"><span><i style="background:#D0142F"></i>CA additionnel</span><span><i style="background:#C9B9B0"></i>Moyenne</span></span></h5>
+                  <div class="sub">Mesuré et traçable — c'est sur ce montant que la commission est calculée.</div>
+                  <div class="chart-wrap" id="areaChart"></div>
+                </div>
+                <div class="dcard">
+                  <h5>Segmentation IA <small>RFM + GMM</small></h5>
+                  <div class="donut-wrap" id="donut"></div>
+                  <div class="segl" id="segLegend"></div>
+                </div>
+              </div>
+              <div class="dgrid g-11">
+                <div class="dcard">
+                  <h5>Ventes des clients fidélisés <small>par famille</small></h5>
+                  <div class="bars" id="catBars"></div>
+                </div>
+                <div class="dcard ai-reco">
+                  <span class="tg"><i data-i="sparkles"></i> Recommandation Muzzup AI</span>
+                  <h6>Précommandes de l'Aïd : invitez en priorité vos 268 clients VIP &amp; réguliers.</h6>
+                  <p>L'an dernier, 41 % des moutons ont été réservés plus de 3 semaines à l'avance. Créneau d'envoi optimal détecté : jeudi 18h.</p>
+                  <div class="row">
+                    <button class="dbtn" id="recoLaunch"><i data-i="send"></i> Préparer la campagne</button>
+                    <a class="dbtn ghost" href="#ia" style="background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.15)">Voir l'analyse</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- VIEW: clients -->
+            <div class="view" data-view="clients">
+              <div class="vh">
+                <div><h3>Clients</h3><p><span id="cliCount"></span> · scoring RFM, segment GMM et risque de churn XGBoost</p></div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="dbtn ghost" id="exportBtn"><i data-i="download"></i> Exporter CSV</button><button class="dbtn" id="relaunchBtn"><i data-i="send"></i> Relancer la sélection</button></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px">
+                <div class="chips" id="segChips"></div>
+                <label class="dsearch" style="max-width:240px"><i data-i="search"></i><input placeholder="Filtrer…" id="cliSearch"></label>
+              </div>
+              <div class="dcard" style="padding:6px 6px 0">
+                <div class="tbl-wrap">
+                  <table class="tbl"><thead><tr><th>Client</th><th>Visites</th><th>CA</th><th>Dernière visite</th><th>Favori</th><th>Risque churn</th><th>Segment</th></tr></thead><tbody id="cliBody"></tbody></table>
+                </div>
+              </div>
+            </div>
+
+            <!-- VIEW: caisse -->
+            <div class="view" data-view="pos">
+              <div class="vh">
+                <div><h3>Caisse &amp; points</h3><p>Ajoutez les produits pesés : les points, tampons et suggestions IA sont calculés en direct.</p></div>
+                <button class="dbtn dark" id="identifyBtn"><i data-i="scan"></i> Scanner la carte client</button>
+              </div>
+              <div class="pos">
+                <div class="dcard">
+                  <h5>Étal du jour <small>cliquez pour ajouter</small></h5>
+                  <div class="prods" id="prods"></div>
+                </div>
+                <div class="ticket">
+                  <div class="cl" id="posClient"><span class="who"><span class="av" style="background:#F1ECEA;color:#7E716C">?</span><span><b>Client non identifié</b><small>Scannez la carte Wallet du client</small></span></span></div>
+                  <div class="lines" id="posLines"><div class="empty">Aucun produit pour l'instant</div></div>
+                  <div class="xsell" id="xsell"></div>
+                  <div class="tot"><div><span>Sous-total</span><span id="posSub">0,000 DT</span></div><div class="big"><span>Total</span><b id="posTot">0,000 DT</b></div></div>
+                  <div class="earn"><span style="font-size:22px">⭐</span><span>Points crédités : <b id="posPts">0</b> pts<br><small id="posStamp">+1 tampon de passage</small></span></div>
+                  <button class="p-btn" id="posValidate"><i data-i="check"></i> Valider l'achat</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- VIEW: campagnes -->
+            <div class="view" data-view="camp">
+              <div class="vh">
+                <div><h3>Nouvelle campagne</h3><p>Configurez une fois, Muzzup relance tout seul.</p></div>
+                <button class="dbtn" id="campLaunch"><i data-i="zap"></i> Activer la campagne</button>
+              </div>
+              <div class="cb">
+                <div class="dcard">
+                  <div class="fld"><span>Modèle</span><div class="tpls" id="tpls"></div></div>
+                  <div class="fld"><span>Nom de la campagne</span><input type="text" id="cName"></div>
+                  <div class="fld"><span>Cible</span><div class="chips" id="cTarget"></div></div>
+                  <div class="fld"><span>Déclencheur</span>
+                    <select id="cTrigger"><option>Absent depuis 14 jours</option><option>Arrivage d'un produit</option><option>30 jours avant l'Aïd</option><option>Début du Ramadan</option><option>Anniversaire du client</option><option>Chaque vendredi 17h</option></select>
+                  </div>
+                  <div class="fld"><span>Message (push gratuit &amp; illimité)</span><textarea id="cMsg" rows="3"></textarea></div>
+                  <div class="fld"><span>Canaux</span><div class="channels" id="cChannels"><button class="tog on">Push</button><button class="tog">SMS</button><button class="tog on">WhatsApp</button><button class="tog">E-mail</button></div></div>
+                </div>
+                <div class="preview">
+                  <div class="pt">18:00</div><div class="pd">jeudi · envoi optimisé par l'IA</div>
+                  <div class="notif" id="cPrev"><div class="h"><span class="ap"><i data-i="logo"></i></span>Dar El Lham · Muzzup<span>maintenant</span></div><b id="cPrevT"></b><p id="cPrevM"></p></div>
+                  <div class="est"><div><b id="eAud">0</b><small>clients ciblés</small></div><div><b id="eRet">0 %</b><small>retour estimé</small></div><div><b id="eCA">0</b><small>DT estimés</small></div></div>
+                  <p style="font-size:11.5px;opacity:.6;margin-top:12px;text-align:center">💡 Vos clients « à risque » répondent 2× mieux le jeudi en fin de journée.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- VIEW: programme -->
+            <div class="view" data-view="prog">
+              <div class="vh">
+                <div><h3>Programme de fidélité</h3><p>Points, tampons, cashback : combinez les mécaniques, tout est automatique.</p></div>
+                <button class="dbtn" id="progSave"><i data-i="check"></i> Enregistrer</button>
+              </div>
+              <div class="mech">
+                <div class="dcard"><span class="switch on"></span><span class="e">⭐</span><h6>Points au dinar</h6><p>Crédités à chaque achat validé en caisse.</p>
+                  <div class="range"><label>1 DT dépensé = <b id="rPtsV">1 pt</b></label><input type="range" min="1" max="5" value="1" id="rPts"></div></div>
+                <div class="dcard"><span class="switch on"></span><span class="e">🎟️</span><h6>Tampons de passage</h6><p>Le dernier tampon = 1 kg de viande hachée offert.</p>
+                  <div class="range"><label>Tampons pour la récompense <b id="rStV">10</b></label><input type="range" min="5" max="15" value="10" id="rSt"></div></div>
+                <div class="dcard"><span class="switch"></span><span class="e">💸</span><h6>Cashback</h6><p>Un % du ticket crédité sur la prochaine visite.</p>
+                  <div class="range"><label>Taux de cashback <b id="rCbV">3 %</b></label><input type="range" min="1" max="10" value="3" id="rCb"></div></div>
+              </div>
+              <div class="dgrid g-11">
+                <div class="dcard">
+                  <h5>Paliers de statut <small>sur 12 mois glissants</small></h5>
+                  <div class="tiers">
+                    <div style="background:linear-gradient(135deg,#B07A54,#7A4B2E)"><b>Bronze</b>dès l'inscription</div>
+                    <div style="background:linear-gradient(135deg,#A8A2A0,#6E6765)"><b>Argent</b>400 DT</div>
+                    <div style="background:linear-gradient(135deg,#E3B35A,#A8741E)"><b>Or</b>1 000 DT</div>
+                    <div style="background:linear-gradient(135deg,#C8102E,#4A0712)"><b>Maître</b>2 500 DT</div>
+                  </div>
+                  <p class="sub" style="margin-top:12px">Or : découpe offerte, accès prioritaire aux précommandes. Maître : pièce maturée offerte chaque trimestre.</p>
+                </div>
+                <div class="dcard">
+                  <h5>QR code vitrine &amp; balance <small>acquisition</small></h5>
+                  <div class="qr-box" style="margin-top:12px">
+                    <canvas id="shopQR" width="130" height="130"></canvas>
+                    <div class="affiche"><small>DAR EL LHAM × MUZZUP</small><b>Scannez.<br>Cumulez.<br>Régalez-vous.</b><small>Votre carte en 5 s dans votre Wallet</small></div>
+                  </div>
+                  <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap"><button class="dbtn ghost" id="qrRegen"><i data-i="refresh"></i> Régénérer</button><button class="dbtn" id="qrPrint"><i data-i="download"></i> Affiche A4 (PDF)</button></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- VIEW: précommandes -->
+            <div class="view" data-view="pre">
+              <div class="vh">
+                <div><h3>Précommandes · Aïd el-Kebir</h3><p><b id="preTotal">0</b> réservations · <b id="preDep">0</b> DT d'acomptes encaissés · retrait la veille de l'Aïd</p></div>
+                <button class="dbtn" id="preAdd"><i data-i="plus"></i> Réservation au comptoir</button>
+              </div>
+              <div class="kanban" id="kanban"></div>
+            </div>
+
+            <!-- VIEW: avis -->
+            <div class="view" data-view="rev">
+              <div class="vh">
+                <div><h3>Avis clients</h3><p>Collecte Google &amp; Facebook toutes les 6 h · analyse de sentiment par l'IA</p></div>
+                <div class="seg"><button class="on">Tous</button><button>À traiter</button></div>
+              </div>
+              <div class="dgrid g-111" style="margin-top:0;margin-bottom:12px">
+                <div class="kpi"><div class="l"><i data-i="star"></i>Note moyenne</div><div class="v">4,8 <span style="font-size:16px;color:#E3A33E">★★★★★</span></div><div class="d">312 avis · +27 ce mois</div></div>
+                <div class="kpi"><div class="l"><i data-i="heart"></i>Sentiment positif</div><div class="v">89 %</div><div class="d">↑ +4 pts</div></div>
+                <div class="kpi"><div class="l"><i data-i="clock"></i>Délai de réponse</div><div class="v">2 h 10</div><div class="d">grâce aux réponses IA</div></div>
+              </div>
+              <div class="rev" id="revList"></div>
+            </div>
+          </div>
+
+          <!-- client drawer -->
+          <aside class="drawer" id="drawer"></aside>
+        </div>
+      </div>
+    </div>
+    <p class="hint" style="display:flex;justify-content:center"><i data-i="arrow"></i> Astuce : cliquez sur une ligne du tableau Clients pour ouvrir la fiche IA du client.</p>
+  </div>
+</section>
+
+<!-- ================= MUZZUP AI ================= -->
+<section class="sec ai-sec" id="ia" data-title="Muzzup AI">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow rv" style="color:var(--violet)">06 — Muzzup AI</span>
+      <h2 class="h2 rv d1">Une intelligence qui connaît<br>vos clients <span class="serif grad-text">mieux qu'eux.</span></h2>
+      <p class="lead rv d2">Les modèles de Retenza AI, réentraînés sur les habitudes d'achat en boucherie. Chaque module ci-dessous est manipulable.</p>
+    </div>
+
+    <div class="bento ai">
+      <!-- RFM -->
+      <div class="card b-7 rv">
+        <h3><span class="ti"><i data-i="chart"></i></span>Score de fidélité RFM</h3>
+        <div class="algo">RÉCENCE · FRÉQUENCE · MONTANT — NORMALISATION MIN-MAX</div>
+        <div class="formula">S<sub>a</sub> = <b id="fWr">0.35</b>·R + <b id="fWf">0.35</b>·F + <b id="fWm">0.30</b>·M</div>
+        <div class="wsl"><span>Récence</span><input type="range" class="dark-range" min="0" max="100" value="35" id="wR"><output id="oR">35 %</output></div>
+        <div class="wsl"><span>Fréquence</span><input type="range" class="dark-range" min="0" max="100" value="35" id="wF"><output id="oF">35 %</output></div>
+        <div class="wsl"><span>Montant</span><input type="range" class="dark-range" min="0" max="100" value="30" id="wM"><output id="oM">30 %</output></div>
+        <div class="rfm-res" id="rfmRes"></div>
+        <div class="legend" style="color:var(--di);margin-top:16px;font-family:var(--f-m);font-size:11px"><span>VIP ≥ 0,75</span><span>Régulier ≥ 0,50</span><span>À risque ≥ 0,30</span><span>Perdu &lt; 0,30</span><span>· poids réglables par boucherie</span></div>
+      </div>
+
+      <!-- Churn -->
+      <div class="card b-5 rv d1">
+        <h3><span class="ti"><i data-i="alert"></i></span>Prédiction de churn</h3>
+        <div class="algo">XGBOOST · PROBABILITÉ DE DÉPART À 30 JOURS</div>
+        <p>Les clients qui s'apprêtent à partir, détectés avant qu'il ne soit trop tard.</p>
+        <div class="churn-list" id="churnList"></div>
+      </div>
+
+      <!-- GMM -->
+      <div class="card b-5 rv">
+        <h3><span class="ti"><i data-i="target"></i></span>Segmentation GMM</h3>
+        <div class="algo">GAUSSIAN MIXTURE · 4 COMPOSANTES</div>
+        <p>Chaque client reçoit une probabilité d'appartenance à chaque segment.</p>
+        <svg class="scatter" id="scatter" viewBox="0 0 400 260" preserveAspectRatio="none"></svg>
+        <div class="legend" style="color:var(--mu);margin-top:8px" id="gmmLegend"></div>
+      </div>
+
+      <!-- Heures creuses -->
+      <div class="card b-7 rv d1">
+        <h3><span class="ti"><i data-i="clock"></i></span>Heures creuses &amp; offres flash</h3>
+        <div class="algo">CARTE DE CHALEUR · FENÊTRE 30 JOURS · SEUIL 45 %</div>
+        <p>Cliquez sur un créneau : Muzzup génère l'offre flash et l'envoie aux clients à moins de 5 km.</p>
+        <div class="heat" id="heat"></div>
+        <div class="heat-legend">Calme <i></i> Rush</div>
+        <div class="flash" id="flash"><span class="e">⚡</span><div><b>Sélectionnez un créneau creux</b><small>L'IA propose la remise optimale et le produit à pousser.</small></div></div>
+      </div>
+
+      <!-- Cross-sell -->
+      <div class="card b-6 rv">
+        <h3><span class="ti"><i data-i="link"></i></span>Cross-sell &amp; up-sell</h3>
+        <div class="algo">MARKET BASKET ANALYSIS · SUPPORT · CONFIANCE · LIFT</div>
+        <p>Les associations détectées dans les tickets, poussées en caisse et en notification post-achat.</p>
+        <div class="rules" id="rules"></div>
+      </div>
+
+      <!-- Fraude -->
+      <div class="card b-6 rv d1">
+        <h3><span class="ti"><i data-i="shield"></i></span>Anti-fraude · Trust score</h3>
+        <div class="algo">SCORE DE CONFIANCE · BLOCAGE AUTO &lt; 0.30</div>
+        <p>Activez des signaux de risque pour voir le score réagir (comptes multiples, points abusifs…).</p>
+        <div class="gauge">
+          <svg viewBox="0 0 170 100" id="gauge"></svg>
+          <div class="signals" id="signals"></div>
+        </div>
+      </div>
+
+      <!-- Sentiment -->
+      <div class="card b-5 rv">
+        <h3><span class="ti"><i data-i="heart"></i></span>Sentiment des avis</h3>
+        <div class="algo">LLM · CLASSIFICATION &amp; THÈMES</div>
+        <div class="sbar-row"><i style="width:89%;background:var(--mint)"></i><i style="width:7%;background:var(--di)"></i><i style="width:4%;background:var(--red)"></i></div>
+        <div class="legend" style="color:var(--mu);margin-top:8px"><span><i style="background:var(--mint)"></i>Positif 89 %</span><span><i style="background:var(--di)"></i>Neutre 7 %</span><span><i style="background:var(--red)"></i>Négatif 4 %</span></div>
+        <div class="senti" id="senti"></div>
+      </div>
+
+      <!-- Chatbot -->
+      <div class="card b-7 rv d1" id="ia-chat">
+        <h3><span class="ti"><i data-i="bot"></i></span>Assistant SAV · Chatbot</h3>
+        <div class="algo">LLM · DÉTECTION D'INTENTION · FR / DARIJA / العربية · ESCALADE HUMAINE</div>
+        <div class="chat">
+          <div class="chat-h"><span class="av">🥩</span><div><b>Assistant Dar El Lham</b><small>● en ligne · répond en 2 s</small></div><span class="lang" id="chatLang">FR</span></div>
+          <div class="chat-b" id="chatB"></div>
+          <div class="chat-s" id="chatS"></div>
+          <form class="chat-f" id="chatF"><input id="chatI" placeholder="Posez une question… (ex : vous avez de l'agneau ?)" autocomplete="off"><button aria-label="Envoyer"><i data-i="send"></i></button></form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ADMIN CONSOLE ================= -->
+<section class="sec" id="admin" data-title="Console Frutopy">
+  <div class="wrap">
+    <div class="sec-head split">
+      <div>
+        <span class="eyebrow rv">07 — Console plateforme</span>
+        <h2 class="h2 rv d1">Frutopy pilote<br>le <span class="serif grad-text">réseau.</span></h2>
+      </div>
+      <p class="lead rv d2">Le super-admin invite, active ou suspend les boucheries, traite le support et surveille les jobs IA qui tournent chaque nuit.</p>
+    </div>
+    <div class="browser rv">
+      <div class="bbar"><i class="d"></i><i class="d"></i><i class="d"></i><span class="url"><i data-i="lock"></i> admin.muzzup.io/plateforme</span></div>
+      <div class="app-ui admin">
+        <div class="adm-top">
+          <div class="brand" style="color:var(--a-ink)"><span class="logo-tile"><i data-i="logo"></i></span>muzzup <small style="color:var(--a-ink3)">console Frutopy</small></div>
+          <div class="seg" id="admTabs"><button class="on" data-t="shops">Boucheries</button><button data-t="support">Support</button><button data-t="health">Santé système</button></div>
+        </div>
+        <div class="dbody">
+          <div class="kpis" id="admKpis">
+            <div class="kpi hl"><div class="l"><i data-i="store"></i>Boucheries actives</div><div class="v" id="admActive">0</div><div class="d">sur <span id="admTotalShops">0</span> inscrites</div></div>
+            <div class="kpi"><div class="l"><i data-i="users"></i>Clients fidélisés</div><div class="v">46 210</div><div class="d">↑ +3 412 ce mois</div></div>
+            <div class="kpi"><div class="l"><i data-i="trend"></i>CA généré (réseau)</div><div class="v">612 k DT</div><div class="d">↑ +21 % vs M-1</div></div>
+            <div class="kpi"><div class="l"><i data-i="message"></i>Tickets ouverts</div><div class="v" id="admTickets">0</div><div class="d warn">● temps moyen 3 h</div></div>
+          </div>
+
+          <div class="adm-view on" data-t="shops">
+            <div class="dcard" style="margin-top:12px;padding:6px 6px 0">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 12px 6px;gap:10px;flex-wrap:wrap"><h5 style="font-size:14px">Boucheries partenaires</h5><button class="dbtn" id="inviteBtn"><i data-i="plus"></i> Inviter une boucherie</button></div>
+              <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Boucherie</th><th>Ville</th><th>Clients</th><th>CA généré</th><th>Commission</th><th>Statut</th><th></th></tr></thead><tbody id="shopBody"></tbody></table></div>
+            </div>
+          </div>
+          <div class="adm-view" data-t="support">
+            <div class="rev" id="ticketList" style="margin-top:12px"></div>
+          </div>
+          <div class="adm-view" data-t="health">
+            <div class="dgrid g-11">
+              <div class="dcard"><h5>Jobs planifiés <small>scheduler</small></h5><div class="jobs" id="jobs"></div></div>
+              <div class="dcard"><h5>Journal d'audit <small>temps réel</small></h5><div class="audit" id="audit"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ACTEURS ================= -->
+<section class="sec tight" id="acteurs" data-title="Acteurs">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow rv">08 — Cas d'utilisation</span>
+      <h2 class="h2 rv d1">Trois acteurs,<br>un <span class="serif grad-text">même objectif.</span></h2>
+    </div>
+    <div class="actors">
+      <div class="card actor rv">
+        <div class="ah"><span class="ai" style="background:rgba(255,106,61,.14)">🙋‍♀️</span><div><h3>Client</h3><small>App mobile · Wallet</small></div></div>
+        <ul>
+          <li><i data-i="check"></i><span>S'inscrire en scannant un QR<small>Carte ajoutée à Apple / Google Wallet</small></span></li>
+          <li><i data-i="check"></i><span>Consulter solde &amp; historique<small>Points, tampons, achats</small></span></li>
+          <li><i data-i="check"></i><span>Utiliser une récompense</span></li>
+          <li><i data-i="check"></i><span>Précommander pour l'Aïd</span></li>
+          <li><i data-i="check"></i><span>Explorer les boucheries &amp; favoris</span></li>
+          <li><i data-i="check"></i><span>Contacter le support<small>FAQ, chatbot, suivi de demande</small></span></li>
+          <li><i data-i="check"></i><span>Gérer compte &amp; paramètres<small>Langue, notifications, RGPD</small></span></li>
+        </ul>
+      </div>
+      <div class="card actor rv d1">
+        <div class="ah"><span class="ai" style="background:rgba(243,196,122,.14)">🔪</span><div><h3>Boucher</h3><small>Dashboard web</small></div></div>
+        <ul>
+          <li><i data-i="check"></i><span>Gérer le programme de fidélité<small>Points, tampons, cashback, QR code</small></span></li>
+          <li><i data-i="check"></i><span>Gérer les clients<small>Consulter, segmenter, relancer</small></span></li>
+          <li><i data-i="check"></i><span>Gérer les achats<small>Ajouter, valider, attribuer les points</small></span></li>
+          <li><i data-i="check"></i><span>Créer des campagnes automatiques</span></li>
+          <li><i data-i="check"></i><span>Gérer les précommandes &amp; acomptes</span></li>
+          <li><i data-i="check"></i><span>Répondre aux avis clients</span></li>
+          <li><i data-i="check"></i><span>Signaler &amp; suivre un incident</span></li>
+        </ul>
+      </div>
+      <div class="card actor rv d2">
+        <div class="ah"><span class="ai" style="background:rgba(94,211,181,.12)">🛡️</span><div><h3>Administrateur</h3><small>Console Frutopy</small></div></div>
+        <ul>
+          <li><i data-i="check"></i><span>Gérer les boucheries<small>Inviter, modifier, suspendre, supprimer</small></span></li>
+          <li><i data-i="check"></i><span>Gérer le support<small>Consulter, répondre, clôturer</small></span></li>
+          <li><i data-i="check"></i><span>Gérer les incidents<small>Statut, réponse au signalement</small></span></li>
+          <li><i data-i="check"></i><span>Superviser les jobs IA</span></li>
+          <li><i data-i="check"></i><span>Auditer la sécurité &amp; la fraude</span></li>
+          <li><i data-i="check"></i><span>Facturer la commission sur résultat</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MODELE ECONOMIQUE ================= -->
+<section class="sec" id="modele" data-title="Modèle économique">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow rv">09 — Modèle économique</span>
+      <h2 class="h2 rv d1">Vous ne payez que si<br>vous <span class="serif grad-text">gagnez.</span></h2>
+    </div>
+    <div class="biz">
+      <div class="card biz-l rv">
+        <span class="chip" style="align-self:flex-start"><i data-i="zap"></i> Paiement au résultat</span>
+        <div class="big">0 DT<br><small>d'abonnement</small></div>
+        <p>Muzzup prélève 5 à 10 % du chiffre d'affaires additionnel réellement généré et tracé par la plateforme. Pas de résultat ? Pas de facture.</p>
+        <ul>
+          <li><i data-i="check"></i>Aucun matériel : un QR code et un smartphone</li>
+          <li><i data-i="check"></i>Notifications push gratuites et illimitées</li>
+          <li><i data-i="check"></i>Mise en place en 15 minutes au comptoir</li>
+          <li><i data-i="check"></i>Sans engagement, export des données à tout moment</li>
+        </ul>
+      </div>
+      <div class="card roi rv d1">
+        <h3>Simulateur de gain</h3>
+        <p>Ajustez selon votre boucherie.</p>
+        <div class="sl"><label>Clients par mois <b id="roiCV">900</b></label><input type="range" class="dark-range" min="100" max="3000" step="50" value="900" id="roiC"></div>
+        <div class="sl"><label>Panier moyen <b id="roiPV">55 DT</b></label><input type="range" class="dark-range" min="15" max="150" step="5" value="55" id="roiP"></div>
+        <div class="sl"><label>Visites supplémentaires grâce à Muzzup <b id="roiUV">+20 %</b></label><input type="range" class="dark-range" min="5" max="40" value="20" id="roiU"></div>
+        <div class="sl"><label>Commission Muzzup <b id="roiKV">7 %</b></label><input type="range" class="dark-range" min="5" max="10" value="7" id="roiK"></div>
+        <div class="roi-out">
+          <div><small>CA additionnel / mois</small><b id="roiCA">0</b></div>
+          <div><small>Commission Muzzup</small><b id="roiFee">0</b></div>
+          <div class="hl"><small>Gain net / an</small><b id="roiNet">0</b></div>
+        </div>
+        <p class="note">Simulation indicative : CA additionnel = clients × panier moyen × hausse des visites.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TECH ================= -->
+<section class="sec tight" id="tech" data-title="Architecture">
+  <div class="wrap">
+    <div class="sec-head split">
+      <div>
+        <span class="eyebrow rv">10 — Architecture</span>
+        <h2 class="h2 rv d1">Une stack <span class="serif grad-text">éprouvée</span>,<br>prête à passer à l'échelle.</h2>
+      </div>
+      <p class="lead rv d2">La base technique des deux projets Retenza, consolidée en une seule plateforme multi-boucheries.</p>
+    </div>
+    <div class="arch rv">
+      <div class="layer"><div class="ln">Couche 1<b>Interfaces</b></div>
+        <div class="nodes">
+          <div class="node"><span class="ni" style="background:rgba(84,197,248,.14)">📱</span><div><b>App client</b><small>Flutter · Dart</small></div></div>
+          <div class="node"><span class="ni" style="background:rgba(255,255,255,.08)">🖥️</span><div><b>Dashboard boucher</b><small>Next.js · Tailwind</small></div></div>
+          <div class="node"><span class="ni" style="background:rgba(94,211,181,.12)">🛡️</span><div><b>Console Frutopy</b><small>Next.js · RBAC</small></div></div>
+          <div class="node"><span class="ni" style="background:rgba(243,196,122,.14)">💳</span><div><b>Pass Wallet</b><small>Apple · Google</small></div></div>
+        </div>
+      </div>
+      <div class="flow"></div>
+      <div class="layer"><div class="ln">Couche 2<b>API &amp; services</b></div>
+        <div class="nodes">
+          <div class="node"><span class="ni" style="background:rgba(104,160,99,.18)">🟢</span><div><b>API REST</b><small>Node.js · Express · Swagger</small></div></div>
+          <div class="node"><span class="ni" style="background:rgba(227,38,63,.14)">🔐</span><div><b>Auth</b><small>JWT · MFA · OTP SMS</small></div></div>
+          <div class="node"><span class="ni" style="background:rgba(156,140,255,.14)">⏱️</span><div><b>Scheduler</b><small>jobs IA · relances</small></div></div>
+          <div class="node"><span class="ni" style="background:rgba(255,106,61,.14)">📣</span><div><b>Notifications</b><small>Push · SMS · E-mail</small></div></div>
+        </div>
+      </div>
+      <div class="flow"></div>
+      <div class="layer"><div class="ln">Couche 3<b>Intelligence</b></div>
+        <div class="nodes">
+          <div class="node"><span class="ni" style="background:rgba(55,118,171,.2)">🐍</span><div><b>RFM + GMM</b><small>pandas · scikit-learn</small></div></div>
+          <div class="node"><span class="ni" style="background:rgba(255,181,71,.14)">🌲</span><div><b>Churn</b><small>XGBoost</small></div></div>
+          <div class="node"><span class="ni" style="background:rgba(94,211,181,.12)">🧺</span><div><b>Market basket</b><small>support · lift</small></div></div>
+          <div class="node"><span class="ni" style="background:rgba(156,140,255,.14)">🧠</span><div><b>LLM</b><small>Groq · Llama 3.1</small></div></div>
+        </div>
+      </div>
+      <div class="flow"></div>
+      <div class="layer"><div class="ln">Couche 4<b>Données</b></div>
+        <div class="nodes">
+          <div class="node"><span class="ni" style="background:rgba(77,179,61,.16)">🍃</span><div><b>MongoDB</b><small>clients · transactions</small></div></div>
+          <div class="node"><span class="ni" style="background:rgba(255,255,255,.08)">📜</span><div><b>Audit logs</b><small>traçabilité des actions</small></div></div>
+          <div class="node"><span class="ni" style="background:rgba(227,38,63,.14)">🧯</span><div><b>Anti-fraude</b><small>device · IP · e-mail</small></div></div>
+          <div class="node"><span class="ni" style="background:rgba(84,197,248,.14)">⚖️</span><div><b>RGPD</b><small>consentement · export</small></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ROADMAP ================= -->
+<section class="sec tight" id="roadmap" data-title="Roadmap">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow rv">11 — Roadmap</span>
+      <h2 class="h2 rv d1">De la boucherie de quartier<br>au <span class="serif grad-text">réseau national.</span></h2>
+    </div>
+    <div class="road">
+      <div class="card rv"><div class="ph">PHASE 01</div><h3>Fidélité</h3><div class="when">Socle Retenza Connect</div>
+        <ul><li>Carte QR &amp; Wallet</li><li>Points, tampons, cashback</li><li>Dashboard &amp; caisse</li><li>Console admin</li></ul></div>
+      <div class="card rv d1"><div class="ph">PHASE 02</div><h3>Intelligence</h3><div class="when">Socle Retenza AI</div>
+        <ul><li>RFM, GMM, churn</li><li>Campagnes automatiques</li><li>Heures creuses</li><li>Chatbot &amp; avis</li></ul></div>
+      <div class="card rv d2 now"><span class="now-tag">EN COURS</span><div class="ph">PHASE 03</div><h3>Boucherie</h3><div class="when">T4 2026 – T1 2027</div>
+        <ul><li>Précommandes Aïd &amp; Ramadan</li><li>Traçabilité halal par lot</li><li>Caisse au poids</li><li>Cross-sell boucherie</li></ul></div>
+      <div class="card rv d3"><div class="ph">PHASE 04</div><h3>Réseau</h3><div class="when">2027</div>
+        <ul><li>Marketplace des boucheries</li><li>Espace pro restaurateurs</li><li>Click &amp; collect / livraison</li><li>Multi-boutiques</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CHARTE ================= -->
+<section class="sec tight" id="charte" data-title="Identité">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow rv">12 — Identité</span>
+      <h2 class="h2 rv d1">Une marque chaude,<br>franche et <span class="serif grad-text">gourmande.</span></h2>
+    </div>
+    <div class="brandg">
+      <div class="card rv">
+        <span class="tag mono" style="font-size:11px;color:var(--di)">LOGO</span>
+        <h3 style="font-family:var(--f-d);font-size:20px;letter-spacing:-.03em;margin-top:6px">Un « M » qui monte</h3>
+        <p style="color:var(--mu);font-size:13.5px;margin-top:6px">La dernière jambe s'élance comme une courbe de croissance : le client qui revient.</p>
+        <div class="logo-show">
+          <div style="background:#FAF5F1;color:#1D1113"><span class="wm"><span class="logo-tile"><i data-i="logo"></i></span>muzzup</span></div>
+          <div style="background:var(--grad)"><span class="logo-tile" style="width:58px;height:58px;border-radius:18px;background:rgba(255,255,255,.16)"><i data-i="logo"></i></span></div>
+        </div>
+      </div>
+      <div class="card rv d1">
+        <span class="tag mono" style="font-size:11px;color:var(--di)">COULEURS</span>
+        <h3 style="font-family:var(--f-d);font-size:20px;letter-spacing:-.03em;margin-top:6px">Rouge boucherie &amp; braise</h3>
+        <div class="sw">
+          <div style="background:#E3263F"><b>Rouge Muzzup</b>#E3263F</div>
+          <div style="background:#9E0E24"><b>Sang de bœuf</b>#9E0E24</div>
+          <div style="background:#FF6A3D"><b>Braise</b>#FF6A3D</div>
+          <div style="background:#F3C47A;color:#3a2205"><b>Or Maître</b>#F3C47A</div>
+          <div style="background:#FAF5F1;color:#1D1113"><b>Crème</b>#FAF5F1</div>
+          <div style="background:#140C0E;border:1px solid var(--line2)"><b>Encre</b>#140C0E</div>
+        </div>
+      </div>
+      <div class="card rv d2">
+        <span class="tag mono" style="font-size:11px;color:var(--di)">TYPOGRAPHIE</span>
+        <h3 style="font-family:var(--f-d);font-size:20px;letter-spacing:-.03em;margin-top:6px">Quatre voix, un rôle chacune</h3>
+        <div class="typo">
+          <div><small>DISPLAY · BRICOLAGE GROTESQUE</small><div class="t1">Fidélité locale</div></div>
+          <div><small>ACCENT · INSTRUMENT SERIF</small><div class="t2">qui a du goût.</div></div>
+          <div><small>TEXTE · INTER</small><div class="t3">Chaque passage devient un client identifié.</div></div>
+          <div><small>DONNÉES · JETBRAINS MONO</small><div class="t4">+4 860 DT · 38 % retour</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="sec tight" id="contact" data-title="Contact">
+  <div class="wrap">
+    <div class="cta-box rv">
+      <span class="eyebrow" style="justify-content:center">Muzzup · by Frutopy</span>
+      <h2 style="margin-top:20px">Chaque client au comptoir<br>mérite de <span class="serif" style="color:var(--gold)">revenir.</span></h2>
+      <p>Muzzup équipe les boucheries d'une fidélité moderne et d'une IA qui travaille pour elles, payée uniquement sur résultat.</p>
+      <div class="hero-ctas">
+        <a href="#app" class="btn"><i data-i="play"></i> Revoir la démo</a>
+        <button class="btn-ghost" id="partnerBtn"><i data-i="store"></i> Devenir boucherie partenaire</button>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="wrap foot">
+      <a href="#hero" class="brand"><span class="logo-tile"><i data-i="logo"></i></span>muzzup</a>
+      <p>Présentation produit · concept inspiré de Retenza Connect &amp; Retenza AI · données de démonstration fictives.</p>
+      <span class="frutopy"><span class="fl">🍊</span><span class="by">Un produit <b>Frutopy</b></span></span>
+    </div>
+  </footer>
+</section>
+
+<script src="js/app.js"></script>
+</body>
+</html>
