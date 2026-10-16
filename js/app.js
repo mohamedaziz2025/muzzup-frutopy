@@ -225,7 +225,7 @@
      PHONE — app client
      ========================================================= */
   const S = {
-    points: 486, stamps: 7, screen: 'welcome', rwCat: 'all', exFilter: 'all', lang: 0, ordered: false,
+    points: 486, stamps: 7, screen: 'welcome', rwCat: 'all', exFilter: 'all', lang: 0,
     activity: [
       { e: '🍖', t: "Gigot d'agneau · 1,2 kg", d: "Aujourd'hui · 10:24", v: 34 },
       { e: '🎁', t: 'Marinade maison offerte', d: 'Hier · 18:02', v: -120 },
@@ -255,10 +255,9 @@
     { id: 'home', t: 'Ma carte', d: 'Points, tampons, activité', k: 'Fidélité', h: 'La carte, toujours à jour', p: 'Points au dinar, tampons de passage et prochaine récompense. Touchez la carte pour afficher le QR membre.', li: ['Progression vers la prochaine récompense', 'Arrivages du jour mis en avant', 'Historique en temps réel'] },
     { id: 'scan', t: 'Scan du ticket', d: 'Crédit instantané des points', k: 'Au comptoir', h: 'Le crédit instantané', p: 'Le QR du ticket crédite les points en une seconde. La caisse du boucher et l\'app sont synchronisées.', li: ['Ticket détaillé au poids', 'Suggestion IA (cross-sell) visible', 'Tampon de passage automatique'] },
     { id: 'rewards', t: 'Récompenses', d: 'Échange de points contre des produits', k: 'Récompenses', h: 'Des cadeaux qui donnent faim', p: 'Merguez maison, côte de bœuf maturée, découpe offerte, kit barbecue : des récompenses pensées boucherie.', li: ['Échange en un geste', 'Bon à présenter au comptoir', 'Catalogue géré par le boucher'] },
-    { id: 'order', t: 'Précommande Aïd', d: 'Mouton, découpe, créneau, acompte', k: 'Commerce', h: "L'Aïd sans file d'attente", p: "Le client choisit son mouton, sa découpe et son créneau, puis verse un acompte. Le boucher planifie, le client est servi à l'heure.", li: ["Compte à rebours jusqu'à l'Aïd", 'Acompte sécurisé de 20 %', 'Synchronisé avec le dashboard boucher'] },
     { id: 'explore', t: 'Boucheries du réseau', d: 'Carte, filtres, favoris', k: 'Réseau', h: 'Le réseau Muzzup', p: 'Toutes les boucheries partenaires autour du client. Une seule app, plusieurs cartes.', li: ['Filtres halal, ouvert, livraison', 'Favoris et distance', 'Cartes multiples dans le Wallet'] },
     { id: 'trace', t: 'Traçabilité', d: 'Origine, abattage, chaîne du froid', k: 'Confiance', h: 'La confiance, prouvée', p: "Le QR de l'étiquette raconte l'histoire de la viande : race, éleveur, abattage, chaîne du froid.", li: ['Certification halal affichée', 'Lot et dates vérifiables', 'Argument premium face à la grande surface'] },
-    { id: 'notifs', t: 'Notifications', d: "Relances intelligentes de l'IA", k: 'Rétention', h: "L'IA relance au bon moment", p: 'Arrivages, tampons presque complets, clients absents, fêtes : chaque notification part au bon moment, pour le bon client.', li: ['Push gratuites et illimitées', "Heure d'envoi optimisée par client", 'Respect du consentement RGPD'] },
+    { id: 'notifs', t: 'Notifications', d: "Relances intelligentes de l'IA", k: 'Rétention', h: "L'IA relance au bon moment", p: 'Arrivages, tampons presque complets, clients absents : chaque notification part au bon moment, pour le bon client.', li: ['Push gratuites et illimitées', "Heure d'envoi optimisée par client", 'Respect du consentement RGPD'] },
     { id: 'profile', t: 'Profil & parrainage', d: 'Statut, code parrain, langue', k: 'Communauté', h: 'Statut & parrainage', p: 'Le client suit son statut, partage son code parrain et gère ses préférences.', li: ['Code parrain unique', 'Langue FR / العربية / Darija', 'Export & suppression des données'] }
   ];
 
@@ -327,31 +326,10 @@
     const list = [
       { h: 'maintenant', b: 'Arrivage agneau frais 🐑', p: 'Épaule et gigot de Sidi Bouzid arrivés ce matin. On vous en met de côté ?' },
       { h: 'il y a 2 h', b: left <= 1 ? 'Plus qu\'un tampon 🎉' : `Plus que ${left} tampons 🎟️`, p: 'Le 10e passage = 1 kg de viande hachée offert.' },
-      { h: 'hier', b: 'Ce week-end, on allume le barbecue 🔥', p: 'Kit brochettes + merguez : double points jusqu\'à dimanche.' },
-      { h: 'il y a 3 j', b: 'Aïd el-Kebir 🌙', p: 'Les précommandes de moutons sont ouvertes. Membres Or : découpe offerte.' }
+      { h: 'hier', b: 'Ce week-end, on allume le barbecue 🔥', p: 'Kit brochettes + merguez : double points jusqu\'à dimanche.' }
     ];
     $('#notifList').innerHTML = list.map((n, i) => `<div class="notif" style="animation-delay:${.15 + i * .18}s"><div class="h"><span class="ap">${ic('logo')}</span>Dar El Lham · Muzzup<span>${n.h}</span></div><b>${n.b}</b><p>${n.p}</p></div>`).join('');
   }
-
-  function renderOrder() {
-    const o = $('#poOpts .on'), price = +o.dataset.price, cuts = $$('#poCuts .on').length, slot = $('#poSlots .on').textContent;
-    const dep = Math.round(price * .2);
-    $('#poSum').innerHTML = `<div><span>${o.dataset.name}</span><b>≈ ${nf(price)} DT</b></div><div><span>Découpe (${cuts} option${cuts > 1 ? 's' : ''})</span><b>Offerte · Or</b></div><div><span>Retrait</span><b>${slot}</b></div><div><span>Points à gagner</span><b>+${nf(price)} pts</b></div><div class="tot"><span>Acompte aujourd'hui (20 %)</span><b>${nf(dep)} DT</b></div>`;
-    if (!S.ordered) $('#poBtn').innerHTML = `${ic('lock')} Réserver · acompte ${nf(dep)} DT`;
-  }
-
-  // countdown to next Aïd el-Kebir (date estimée)
-  const AID = [new Date('2027-05-16T08:00:00'), new Date('2028-05-05T08:00:00')];
-  function tickCountdown() {
-    const now = Date.now(), target = AID.find(d => d > now) || AID[AID.length - 1];
-    let s = Math.max(0, Math.floor((target - now) / 1000));
-    const d = Math.floor(s / 86400); s -= d * 86400;
-    const h = Math.floor(s / 3600); s -= h * 3600;
-    const m = Math.floor(s / 60); s -= m * 60;
-    $('#cdD').textContent = d; $('#cdH').textContent = String(h).padStart(2, '0');
-    $('#cdM').textContent = String(m).padStart(2, '0'); $('#cdS').textContent = String(s).padStart(2, '0');
-  }
-  tickCountdown(); setInterval(tickCountdown, 1000);
 
   const enter = {
     otp: async () => {
@@ -365,8 +343,7 @@
       }
     },
     notifs: renderNotifs,
-    scan: () => { $('#scanner').classList.remove('done'); $('#scanBtn').innerHTML = `${ic('scan')} Simuler le scan`; },
-    order: renderOrder
+    scan: () => { $('#scanner').classList.remove('done'); $('#scanBtn').innerHTML = `${ic('scan')} Simuler le scan`; }
   };
 
   function go(id, fromTour = false) {
@@ -420,13 +397,6 @@
 
     const fav = e.target.closest('[data-fav]');
     if (fav) { const s = SHOPS[+fav.dataset.fav]; s.fav = !s.fav; fav.classList.toggle('on', !!s.fav); ptoast(s.fav ? '❤️' : '🤍', s.fav ? `${s.n} ajoutée aux favoris` : `${s.n} retirée des favoris`); return; }
-
-    const opt = e.target.closest('#poOpts button');
-    if (opt) { $$('#poOpts button').forEach(b => b.classList.toggle('on', b === opt)); renderOrder(); return; }
-    const cut = e.target.closest('#poCuts button');
-    if (cut) { cut.classList.toggle('on'); renderOrder(); return; }
-    const slot = e.target.closest('#poSlots button');
-    if (slot) { $$('#poSlots button').forEach(b => b.classList.toggle('on', b === slot)); renderOrder(); return; }
   });
 
   // card flip → member QR
@@ -464,17 +434,6 @@
   });
 
   // preorder
-  $('#poBtn').addEventListener('click', e => {
-    if (S.ordered) { goDashView('pre'); $('#dashboard').scrollIntoView({ behavior: 'smooth' }); return; }
-    S.ordered = true;
-    const o = $('#poOpts .on'), dep = Math.round(+o.dataset.price * .2);
-    ptoast('🌙', `<b>Réservation confirmée</b> · acompte ${nf(dep)} DT payé`);
-    burstFrom(e.currentTarget);
-    $('#poBtn').innerHTML = `${ic('check')} Réservé · voir côté boucher`;
-    PRE.unshift({ n: ($('#helloName').textContent || 'Sarra') + ' B. (app)', a: o.dataset.name, s: $('#poSlots .on').textContent, dep, col: 0, fresh: true });
-    renderKanban();
-  });
-
   // profile
   $('#refBtn').addEventListener('click', () => {
     try { navigator.clipboard && navigator.clipboard.writeText('https://muzzup.io/r/REF-SARRA-0448'); } catch (_) { /* presse-papiers indisponible */ }
@@ -488,7 +447,7 @@
   drawQR($('#scanQR'), 2291, '#ffffff');
   $('#lockDate').textContent = new Date().toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
 
-  renderCard(); renderShops(); renderOrder(); renderNote('welcome');
+  renderCard(); renderShops(); renderNote('welcome');
 
   /* =========================================================
      DASHBOARD — boucher
